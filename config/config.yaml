@@ -1,0 +1,63 @@
+# ===============================
+# Global Project Configuration
+# ===============================
+
+# -------- Data ----------
+data:
+  default_dataset: "BRATS"
+  datasets:
+    BRATS:
+      root_dir: "data/brats2021"
+      modalities: ["T1", "T2", "FLAIR", "T1CE"]
+      train_ratio: 0.8
+      val_ratio: 0.1
+      test_ratio: 0.1
+      missing_modal_prob: 0.3
+
+    ISLES:
+      root_dir: "data/isles2022"
+      modalities: ["DWI", "ADC","FLAIR"]
+      train_ratio: 0.8
+      val_ratio: 0.1
+      test_ratio: 0.1
+      missing_modal_prob: 0.3
+
+# -------- Model ----------
+model:
+  encoder_channels: [32, 64, 128, 256]
+  encoder_depth: 4
+  image_size: [128, 128, 128]
+  patch_size: [16, 16, 16]
+  projection_dim: 256
+  prototype_num: 16
+  mae_mask_ratio: 0.5
+  uncertainty_threshold: 0.1
+  contrastive_temperature: 0.1
+  dynamic_modal_weight: true
+
+# -------- Training ----------
+training:
+  ssl_epochs: 200
+  ssl_batch_size: 4
+  ssl_lr: 1e-4
+  optimizer: "AdamW"
+  weight_decay: 0.01
+  sup_epochs: 150
+  sup_batch_size: 2
+  sup_lr: 5e-5
+  distill_weight: 1.0
+
+# -------- Loss Weighting ----------
+loss:
+  mae_weight: 1.0
+  contrastive_weight: 0.5
+  prototype_weight: 1.0
+  seg_weight: 1.0
+  cls_weight: 1.0
+  kd_weight: 1.0
+
+# -------- Logging ----------
+logging:
+  save_dir: "checkpoints/"
+  tensorboard_dir: "logs/"
+  ckpt_interval: 10
