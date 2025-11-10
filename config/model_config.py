@@ -11,9 +11,6 @@ import os
 class SingleDatasetConfig:
     root_dir: str
     modalities: List[str]
-    train_ratio: float
-    val_ratio: float
-    test_ratio: float
     missing_modal_prob: float
 
 @dataclass

@@ -4,22 +4,16 @@
 
 # -------- Data ----------
 data:
-  default_dataset: "BRATS"
+  default_dataset: "ISLES"
   datasets:
     BRATS:
       root_dir: "data/brats2021"
       modalities: ["T1", "T2", "FLAIR", "T1CE"]
-      train_ratio: 0.8
-      val_ratio: 0.1
-      test_ratio: 0.1
       missing_modal_prob: 0.3
 
     ISLES:
       root_dir: "data/isles2022"
       modalities: ["DWI", "ADC","FLAIR"]
-      train_ratio: 0.8
-      val_ratio: 0.1
-      test_ratio: 0.1
       missing_modal_prob: 0.3
 
 # -------- Model ----------
